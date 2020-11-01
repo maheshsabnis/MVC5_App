@@ -54,14 +54,6 @@ ALTER TABLE [dbo].[Employee]  WITH CHECK ADD FOREIGN KEY([DeptNo])
 REFERENCES [dbo].[Department] ([DeptNo])
 GO
 
-
-
-
-
-
-
-
-
 Programming with ASP.NET MVC 5
 1. CReating Data Access Layer using EntityFramework 6.1
 	- Database First Approach
@@ -119,3 +111,148 @@ Programming with ASP.NET MVC 5
 		- Web API Configuration
 		- Security or Identity COnfiguration
 		- JavaScript and CSS bundling
+===========================================================================================================
+Model-View-Controller (MVC)
+1. Model
+	- Domain Implementation of the Application e.g. eCom / FInal / Logic / Office Automation
+		- Business Workflows
+		- Entity Classes
+		- Data Access
+	- This contains the state of the application 
+		- State, the Data Manupulation
+		- State, the Data Persistance
+2. Controller
+	- This is the Object that accepts HTTP Requests from the End-User
+	- Controller is Responsible for
+		- Accept request and eveluate the request (GET / POST)
+			- The Route Table is Created and Maintained by MVC Application on Web Server for 
+				deciding which controller and which action method from the controller is executed
+		- Contains  Action Methods (?)
+			- Action Methods are those methods which are executed based on HTTP GET / POST  request
+		- Invoke an action method based on HTTP REquest (GET /POST)
+		- COntroller Validate the Request using Authentication and Authorization
+			- BAsed on the Authentication the Action methods will be executed
+			- If the User Auth failed the Accces Denied / 401 response will be sent back
+		- Validate the Posted data in HTTP Post request
+		- Handle Exception if any exception is thrown, then respond the Error View
+		- Once the Action method is successfully executed, 
+			- COntroller will Update the Model aka perform Domain operations
+			- COntriller will respond the View
+	- MVC Controller clas is derived from  'Controller' abstract base class.
+		- It implements following interfaces
+			- IActionFilter
+				- Interface that will provided custom action filter mechanism (?)
+					- Action Filter means the additional logic that you want to executed along
+						with the request e.g. The Logger
+			
+			- IAuthenticationFilter
+				- Used to Authenticate the Request
+			- IAuthorizationFilter
+				- Used to verify the role of the user before processing the request
+			- IDisposable
+			- IExceptionFilter
+				- USed to handle Exceptions while processing the request
+				- Default Error Filter is already present
+				- We can write custom Exception Management
+			- IResultFilter
+				- What result will be responded to tej end-user
+			- IAsyncController, IAsyncManagerContainer
+				- Asynchronous Exeuction of Action Method	
+		- Porperties od Controller abstract class
+			- RouteData 
+				- Represent the Current Expression
+			- ActionInvoker of the type IActionInvoker
+				- Invoke the action based on the Route expression and upon the type of HTTP Request (GET/POST)
+			- Session
+				- represent the current sessiom
+			- ModelState
+				- Validated the Model object aka entity object passed in HTTP Requedst body while making
+					HTTP POST / PUT request
+			- User of the type IPrincipal
+				- The Current Login user
+		- The Controller  abstract base class contains method for
+			- Action Execution 
+				- Monitor the Action Execution
+					- Validate the Model
+					- Update the Model
+			- Exception Raising
+				- If Exception Occites then handle exception
+			- Result Generation
+				- Used to retirn result in response
+			- Authorization
+				- Verify the Request for Authentication and Authorization
+	- Action Methods
+		- Methods Ivoked by COntroller based on Route Expression and Request Type (GET /POST)
+		- They returns Type of 'IActionResult' interface
+			- This interface represents the type of result generated as response by Action method
+			- MVC Action methods have following IActionResult type classes
+				- ViewResult
+					- Return View
+				- EmptyResult
+					- No Result aka void response
+				- JavaScriptResult
+					- Returns JavaScript to CLient
+				- JsonResult
+					- Respond JSON data to client
+				- FilePathResult
+					- return the File that wil downloaded to the client 
+					- Binary Documents	
+				- FileContentResult
+					- File is opened on server and its contents are returned to client
+					- Text based file
+				- FileStreamResult
+					- File is opened on server and it will stream to client e.g. Images / Videos
+				- RedirectToActionResult
+					- Redirect the request to other action method in Same Controller or action method in
+						different controller		
+				- RedirectToRouteResult
+					- Redirect to different Route Expression
+
+
+
+
+
+3. View
+	- The User Interface of the Application
+	- The Controller will decide which View will be send to the end-user as a response
+	- ASP.NET MVC 3,4,5 has Razor Views (?)
+		- Razor Veiws are Lightweight language intergated HTML pages
+			- e.g. cshtml, means HTML page with C# language integrated 
+	- Two Types of Views
+		- Strongly Typed View
+			- Accepts the Model class as input parameter to generate View with HTML elements 
+			- The View knows what data to be shown
+			- Two Types of Strongle Typed Views
+				- Page View, executed like page
+				- Partial View, executed like User Control
+					- Page View can use partiel views in it
+			- View Templates
+				- List, accepts IENumerable of Model class to show the collection of Model data on View 
+				- Create, accpet an Empty model to create new record
+				- Edit, accepts a model with data to be edited
+				- Delete, accept a model with data to be deleted
+				- Details, accept read-only model
+				- Empty, accept a model but developer can choose HTML to design view 
+		- Empty View
+			- Does not accept any data but provides facility to developer to use
+				HTML elements and JavaScript
+	- Concept behind the Razor View in MVC
+		- The Base class for Razor view is 
+			- WebViewPage<TModel>
+				- TModel is the type of Model class passed to veiw while scaffolding means generating view
+				- e.g. If view template is List and Model class is department then 
+					TModel will be IEnumerbale<Department>
+				- Properties
+					- Html
+						- Of the type HtmlHelper
+							- HtmlHelper are custom MVC elements those are rendered into HTML elements
+								by excuting on server 
+					- Model of the type TModel
+					-ViewData of the type ViewDataDicitonary, used pass data from controller to view 
+						like ViewState
+
+
+
+Exercise
+1. Create Employee Controller with View to Perform CRUD operations (Npw)
+2. Show the Department and Employee link on the Home Page (Hint _layout.cshtml page) (Now)

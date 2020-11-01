@@ -16,6 +16,7 @@ namespace MVC5_App
             // call the UnityConfig class so that the Unity Dependency container will be created
             UnityConfig.RegisterComponents();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            // all routes are initialized
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }

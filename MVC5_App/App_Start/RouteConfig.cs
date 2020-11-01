@@ -12,10 +12,10 @@ namespace MVC5_App
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
+            // the Rpute Table is created
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
+                url: "{controller}/{action}/{id}", // route template
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
         }

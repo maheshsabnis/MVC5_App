@@ -18,10 +18,10 @@ namespace MVC5_App.Services
     /// </typeparam>
     public interface IService<TEntity, in TPk> where TEntity: class
     {
-        Task<IEnumerable<TEntity>> GetAsync();
-        Task<TEntity> GetAsync(TPk id);
-        Task<TEntity> CreayeAsync(TEntity entity);
-        Task<TEntity> UpdateAsync(TPk id, TEntity entity);
-        Task<bool> DeleteAsyc(TPk id);
+        IEnumerable<TEntity> GetAsync();
+         TEntity GetAsync(TPk id);
+         TEntity CreayeAsync(TEntity entity);
+         TEntity UpdateAsync(TPk id, TEntity entity);
+         bool DeleteAsyc(TPk id);
     }
 }

@@ -19,48 +19,48 @@ namespace MVC5_App.Services
             this.context = context;
         }
 
-        public async Task<Department> CreayeAsync(Department entity)
+        public  Department CreayeAsync(Department entity)
         {
             entity = context.Departments.Add(entity);
             // await --> means wait for the method to get execute
-            await context.SaveChangesAsync();
+             context.SaveChanges();
             return entity;
         }
 
-        public async Task<bool> DeleteAsyc(int id)
+        public  bool DeleteAsyc(int id)
         {
-            var rec = await context.Departments.FindAsync(id);
+            var rec =   context.Departments.Find(id);
             if (rec != null)
             {
                 // delete the record
                 context.Departments.Remove(rec);
-                await context.SaveChangesAsync();
+                 context.SaveChanges();
                 return true;
             }
             return false;
         }
 
-        public async Task<IEnumerable<Department>> GetAsync()
+        public    IEnumerable<Department> GetAsync()
         {
-            var res = await context.Departments.ToListAsync();
+            var res =  context.Departments.ToList();
             return res;
         }
 
-        public async Task<Department> GetAsync(int id)
+        public  Department GetAsync(int id)
         {
-            var rec = await context.Departments.FindAsync(id);
+            var rec =  context.Departments.Find(id);
             return rec;
         }
 
-        public async Task<Department> UpdateAsync(int id, Department entity)
+        public Department UpdateAsync(int id, Department entity)
         {
-            var rec = await context.Departments.FindAsync(id);
+            var rec =context.Departments.Find(id);
             if (rec != null)
             {
                 // update the record
                 rec.DeptName = entity.DeptName;
                 rec.Location = entity.Location;
-                await context.SaveChangesAsync();
+                 context.SaveChanges();
                 return rec; // updated value
             }
             return entity; // non-updated value
