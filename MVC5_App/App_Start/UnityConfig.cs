@@ -19,7 +19,7 @@ namespace MVC5_App
             // register the DbCOntext class in container
             container.RegisterType<EmployeeEDMX>();
             container.RegisterType<IService<Department,int>,DepartmentService>();
-            
+            container.RegisterType<IService<Employee, int>, EmployeeService>();
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
     }

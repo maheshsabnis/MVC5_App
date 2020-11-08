@@ -26,7 +26,7 @@ namespace MVC5_App.Models
         }
 
         public static ApplicationDbContext Create()
-        {
+       {
             return new ApplicationDbContext();
         }
     }

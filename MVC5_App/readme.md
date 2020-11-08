@@ -233,6 +233,17 @@ Model-View-Controller (MVC)
 				- Delete, accept a model with data to be deleted
 				- Details, accept read-only model
 				- Empty, accept a model but developer can choose HTML to design view 
+			- A Strongly-Typed voiew can accept "only-one model class" at a time  
+				- If a Controller wants to pass additional data to view, then the 
+					controller must use the ViewBag/ViewData 
+				- ViewBag,is a dynamic object that is used to define a Key/Value pair
+					of the additional data that controller's action method want to
+					pass to view
+				- ViewBag, will be typed-to the ViewDataDictionary at runtime
+				- ViewBag is scopped to an action method, means once the action method completes
+					its execution the 'Key' of the ViewBag will be removed, so make sure that if
+					the view accepts ViewBag/ViewData, then all Action methods returning that view
+					must be passed with ViewBag/ViewData
 		- Empty View
 			- Does not accept any data but provides facility to developer to use
 				HTML elements and JavaScript
@@ -256,3 +267,47 @@ Model-View-Controller (MVC)
 Exercise
 1. Create Employee Controller with View to Perform CRUD operations (Npw)
 2. Show the Department and Employee link on the Home Page (Hint _layout.cshtml page) (Now)
+
+
+===========================================================================================================
+Programming with MVC?
+- Understaand and code as per the MVC Request Proceasing(?)
+	- Validations
+		- Standard Validation
+		- Custom Validations
+		- Async Validations
+	- Filters
+		- Standard Filters
+		- Security Filters
+		- Custom Filters
+	- Security Filters
+		- User Based Security
+		- Role Based Security
+- Working with HTTP Services using WEB APIS
+	- Validations
+	- Filters
+	- Security
+
+==========================================================================================================
+Validations
+- Data Annotations
+	- System.ComponentModel.DataAnnotations
+		- RequestAttribute, StringLength, KeyAttribute, etc.
+	- If the View is scaffolded with the Model class having valdiation rule then the MVC will render
+		the jQuery.Validate.js to the browser to execute server-side validations on the client
+		This is implemented using
+			- UnObstrusiveValidations
+				- UnobtrusiveJavaScriptEnabled
+					- Add HTML 5 validators for HTML rendered elements
+			- ClientSideValaidtions
+				- ClientValidationEnabled
+			from Web.Config file
+	- An Asynchronous Validations
+		- Use the  'RemoteAttribute' on the property from entity class taht is to be validated asynchronously
+		- The COntroller must have a method that return JSONResult for Async Validation.
+		- This action method must acccept the property being validated asynchronously
+		- The UnObstrusive JavaScript will add an AJAX call for validations on the View for
+		the property being validated
+		- One property of ENtity class can have only one remote validator
+
+- Exercise 1: Implement the Async validator for validating the EmpNo as unique key.

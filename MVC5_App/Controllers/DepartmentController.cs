@@ -37,9 +37,16 @@ namespace MVC5_App.Controllers
         [HttpPost]
         public ActionResult Create(Department dept)
         {
-            deptService.CreayeAsync(dept);
-            // go to Index action method of same controller
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                deptService.CreayeAsync(dept);
+                // go to Index action method of same controller
+                return RedirectToAction("Index");
+            }
+            else 
+            {
+                return View(dept);
+            }
         }
 
         public ActionResult Edit(int id)

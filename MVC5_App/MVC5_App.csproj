@@ -194,8 +194,10 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="CustomValidators\NumericValidators.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -206,6 +208,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\EmployeeService.cs" />
     <Compile Include="Services\DepartmentService.cs" />
     <Compile Include="Services\IService.cs" />
     <Compile Include="Startup.cs" />
@@ -270,6 +273,8 @@
     <Content Include="Views\Department\Index.cshtml" />
     <Content Include="Views\Department\Create.cshtml" />
     <Content Include="Views\Department\Edit.cshtml" />
+    <Content Include="Views\Employee\Index.cshtml" />
+    <Content Include="Views\Employee\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

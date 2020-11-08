@@ -19,11 +19,11 @@ namespace MVC5_App.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int DeptNo { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="DeptName is Mandatory")]
         [StringLength(100)]
         public string DeptName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Loation is Mandatory")]
         [StringLength(100)]
         public string Location { get; set; }
 
