@@ -1,0 +1,13 @@
+﻿
+<h1>The Custom Error View</h1>
+<h1 class="text-danger">Error.</h1>
+<h2 class="text-danger">An error occurred while processing your request.</h2>
+
+<h2>Error Occured in Controller @ViewData["ControllerName"]</h2>
+<h2>The Action Method raised error @ViewData["ActionName"]</h2>
+<h2>The Exception Message @ViewData["ErrorMessage"]</h2>
+
+@Html.ActionLink("Go Back", @ViewData["ActionName"], @ViewData["ControllerName"])
+
+
+

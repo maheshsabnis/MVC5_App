@@ -25,12 +25,38 @@ namespace MVC5_App.Controllers
         // GET: Employee
         public ActionResult Index()
         {
-            var res = empService.GetAsync();
+            List<Employee> res = new List<Employee>();
+            // check if TempDasta has keys
+            if (TempData.Keys.Count > 0)
+            {
+                var deptno = Convert.ToInt32(TempData["DeptNo"]);
+                if (deptno > 0)
+                {
+                    // filter employeed based on DeptNo
+                    res = (from e in empService.GetAsync()
+                           where e.DeptNo == deptno
+                           select e).ToList();
+                    TempData.Keep();
+                    ViewBag.Message = $"List of Employees in DeptNo = {deptno}";
+                }
+                else
+                {
+                    res = empService.GetAsync().ToList();
+                    ViewBag.Message = $"There are no employees for DeptNo {deptno} so showing all";
+                }
+            }
+            else
+            {
+                res = empService.GetAsync().ToList();
+                ViewBag.Message = $"TempData is Empty so showing all";
+            }
+
             return View(res);
         }
 
         public ActionResult Create()
         {
+            var data = TempData["DeptNo"];
             var res = new Employee();
             // SelectList is a MVC CLass thatwill be used
             // to define a List object so that it willbe displayed

@@ -7,3 +7,23 @@
 <h1 class="text-danger">Error.</h1>
 <h2 class="text-danger">An error occurred while processing your request.</h2>
 
+@if (Model != null)
+{
+    <h2>Error Occured in Controller @Model.ControllerName</h2>
+    <h2>The Action Method raised error @Model.ActionName</h2>
+    <h2>The Exception Message @Model.Exception.Message</h2>
+
+    @Html.ActionLink("Go Back", @Model.ActionName, @Model.ControllerName)
+
+}
+else
+{
+    <h2>Error Occured in Controller @ViewData["ControllerName"]</h2>
+    <h2>The Action Method raised error @ViewData["ActionName"]</h2>
+    <h2>The Exception Message @ViewData["ErrorMessage"]</h2>
+
+    @Html.ActionLink("Go Back",ViewData["ActionName"].ToString(), ViewData["ControllerName"].ToString())
+
+}
+
+

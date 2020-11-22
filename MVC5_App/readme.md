@@ -311,3 +311,62 @@ Validations
 		- One property of ENtity class can have only one remote validator
 
 - Exercise 1: Implement the Async validator for validating the EmpNo as unique key.
+=====================================================================================================
+Action Filters
+1. Global Level
+	- All Controllers and all actions from them
+2. Controller Level
+	- All Actions of the Controle
+3. Action Level
+	- On;y for the specific Action
+
+Order Of Execution
+
+1. Global
+	- OnActionExecuting
+2. Controller
+	- OnActionExecuting
+3. Action 
+	- OnActionExecuting
+		- OnException
+	- OnActionExecuted
+	- OnResultExecuting
+	- OnResultExecuted
+4. Controller
+    - OnActionExecuted
+5. Global
+	- OnActionExecuted
+
+LAB EXERCISE : Create a Action Filter That will log Exceptions in database tabel as below
+ ControllerName, ActionName, Exception Type, Exception Message. 
+ When exception occures navigate to error page and show error details. This error page must have link
+ for 'Go back'. Once this link is clicked, go back to the page where exception has occured
+ and show what data caused exception 
+
+===================================================================================================
+Data Communication Across Components using
+1. TempDataDictionary Object
+	- TempData 
+		- Key Value pair for sharing data across action methods of Same and different Controllers
+		- TempData["Key"] =  value;
+		- *** Once the reciving Action Method reads data from the 'key' of TempData
+			the Key will be removed
+		- If you want to keep the state in TempData, then use
+			TempData.keep() method in target n action method so that state will be remained
+2. Session State
+	- Pure server-side mechanism, of state management
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
